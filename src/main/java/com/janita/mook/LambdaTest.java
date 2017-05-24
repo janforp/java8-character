@@ -5,6 +5,7 @@ import com.janita.bean.StudentTestScore;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * Created by Janita on 2017-05-24 09:51
@@ -90,4 +91,23 @@ public class LambdaTest {
         System.out.println("*******" + clazzTestScores);
     }
 
+
+
+}
+
+class Lambda4 {
+    static int outerStaticNum;
+    int outerNum;
+
+    void testScopes() {
+        Converter<Integer, String> stringConverter1 = (from) -> {
+            outerNum = 23;
+            return String.valueOf(from);
+        };
+
+        Converter<Integer, String> stringConverter2 = (from) -> {
+            outerStaticNum = 72;
+            return String.valueOf(from);
+        };
+    }
 }
