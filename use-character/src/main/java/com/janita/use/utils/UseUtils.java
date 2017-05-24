@@ -1,6 +1,7 @@
 package com.janita.use.utils;
 
 import com.janita.use.bean.Author;
+import com.janita.use.bean.Book;
 import com.janita.use.bean.Customer;
 
 import java.util.ArrayList;
@@ -69,5 +70,28 @@ public class UseUtils {
         authorList.add(authorD);
 
         return authorList;
+    }
+
+    public static List<Book> getBookList() {
+
+        List<Book> books = new ArrayList<>();
+
+        Book bookA = new Book();
+        bookA.setBookId(1L);
+        bookA.setTitle("小时代");
+
+        Book bookB = new Book();
+        bookB.setBookId(2L);
+        bookB.setTitle("寻秦记");
+
+        Book bookC = new Book();
+        bookC.setBookId(3L);
+        bookC.setTitle("天龙八部");
+
+        books.add(bookA);
+        books.add(bookB);
+        books.add(bookC);
+
+        return books;
     }
 }

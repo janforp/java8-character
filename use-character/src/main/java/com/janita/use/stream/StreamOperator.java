@@ -28,7 +28,8 @@ public class StreamOperator {
     @Test
     public void rank() {
         List<String> names =authorList
-                .stream()       //把集合转换为stream
+//                .stream()       //把集合转换为stream
+                .parallelStream()       //把集合转换为stream
                 .map(Author::getAuthorName) //对stream中的每个元素转换类型为string
                 .distinct() //对转换为string的stream去重
                 .sorted(Comparator.naturalOrder())  //排序
