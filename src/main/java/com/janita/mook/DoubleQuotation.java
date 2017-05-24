@@ -12,7 +12,9 @@ public class DoubleQuotation {
     public static void main(String[] args) {
 
         /**
-         * 我们通过Person::new创建一个人的引用，Java编译器会自动选择正确的构造函数匹配PersonFactory.create的返回
+         * 我们通过Person::new创建一个人的引用，
+         * Java编译器会自动选择正确的
+         * 构造函数匹配PersonFactory.create的返回
          */
         PersonFactory<Person> personFactory = Person::new;
         Person person = personFactory.create("Peter", "Parker");

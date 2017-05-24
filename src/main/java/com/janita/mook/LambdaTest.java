@@ -81,10 +81,12 @@ public class LambdaTest {
     @Test
     public void testClazz() {
         List<ClazzTestScore> clazzTestScores = ClazzTestScore.getClazz();
-        clazzTestScores.sort((ClazzTestScore clazzA, ClazzTestScore clazzB) -> (clazzA.getScore().subtract(clazzB.getScore())).intValue());
+        clazzTestScores.sort((ClazzTestScore clazzA, ClazzTestScore clazzB) ->
+                (clazzA.getScore().subtract(clazzB.getScore())).intValue());
         System.out.println("*******" + clazzTestScores);
 
-        clazzTestScores.sort((ClazzTestScore clazzA, ClazzTestScore clazzB) -> (clazzB.getScore().subtract(clazzA.getScore())).intValue());
+        clazzTestScores.sort((ClazzTestScore clazzA, ClazzTestScore clazzB) ->
+                (clazzB.getScore().subtract(clazzA.getScore())).intValue());
         System.out.println("*******" + clazzTestScores);
     }
 

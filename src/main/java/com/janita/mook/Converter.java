@@ -1,5 +1,7 @@
 package com.janita.mook;
 
+import org.junit.Test;
+
 /**
  * Created by Janita on 2017-05-24 11:32
  * 注解 @FunctionalInterface
@@ -24,7 +26,9 @@ class ConverterTest{
     public static void main(String[] args) {
 //        simpleUse();
 //        simpler();
-        useSomething();
+//        useSomething();
+//        testFinal();
+        testFinal3();
     }
 
 
@@ -57,6 +61,39 @@ class ConverterTest{
         Converter<String, String> converter = something::startsWith;
         String converted = converter.convert("Java");
         System.out.println(converted);    // "J"
+    }
+
+    /**
+     * 可以从本地外部范围以及实例字段和静态变量中
+     * 访问final变量
+     */
+    @Test
+    public static void testFinal() {
+        final int num = 1;
+        Converter<Integer, String> stringConverter = (from) -> String.valueOf(from + num);
+        String converted = stringConverter.convert(2);     // 3
+        System.out.println("*******"+ converted);
+    }
+
+    /**
+     * 但不同的匿名对象变量num没有被声明为final，
+     * 下面的代码也有效
+     */
+    @Test
+    public static void testFinal2() {
+        int num = 1;
+        Converter<Integer, String> stringConverter = (from) -> String.valueOf(from + num);
+        stringConverter.convert(2);     // 3
+    }
+
+    /**
+     * 然而num必须是隐含的final常量。以下代码不编译
+     */
+    @Test
+    public static void testFinal3() {
+        int num = 1;
+//        Converter<Integer, String> stringConverter = (from) -> String.valueOf(from + num);
+        num = 3;
     }
 
 
