@@ -13,7 +13,6 @@ public interface Converter<F, T> {
     T convert (F from);
 }
 
-
 class Something {
     String startsWith(String s) {
         return String.valueOf(s.charAt(0));
@@ -24,10 +23,10 @@ class Something {
 class ConverterTest{
 
     public static void main(String[] args) {
-//        simpleUse();
-//        simpler();
-//        useSomething();
-//        testFinal();
+        simpleUse();
+        simpler();
+        useSomething();
+        testFinal();
         testFinal3();
     }
 
@@ -95,6 +94,4 @@ class ConverterTest{
 //        Converter<Integer, String> stringConverter = (from) -> String.valueOf(from + num);
         num = 3;
     }
-
-
 }

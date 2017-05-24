@@ -237,7 +237,7 @@ public class StreamsTest {
         Optional<StudentTestScore> reduced =
                 scoreList
                     .stream()
-//                    .sorted()
+                    .sorted()
                     .reduce((scoreA, scoreB) -> {
 
                         BigDecimal score1 = scoreA.getScore();
