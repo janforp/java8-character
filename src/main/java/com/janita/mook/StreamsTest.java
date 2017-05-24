@@ -1,10 +1,13 @@
 package com.janita.mook;
 
+import com.janita.bean.StudentTestScore;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Janita on 2017-05-24 12:58
@@ -20,7 +23,7 @@ public class StreamsTest {
     List<String> stringCollection;
 
     @Before
-    public List<String> get() {
+    public void get() {
         stringCollection = new ArrayList<>();
         stringCollection.add("ddd2");
         stringCollection.add("aaa2");
@@ -30,8 +33,6 @@ public class StreamsTest {
         stringCollection.add("ccc");
         stringCollection.add("bbb2");
         stringCollection.add("ddd1");
-
-        return stringCollection;
     }
 
     /**
@@ -48,6 +49,8 @@ public class StreamsTest {
      * 这个中间操作能够调用另一个流的操作（Foreach）的结果。
      * ForEach接受一个消费者为每个元素执行过滤流。
      * 它是void，所以我们不能称之为另一个流操作。
+     *
+     * predicate：传一个对象，返回一个布尔值，一般用于过滤操作
      */
     @Test
     public void testFilter() {
@@ -56,6 +59,109 @@ public class StreamsTest {
                 //能不能对对象进行针对字段的过滤呢？ TODO
                 .filter((s) -> s.startsWith("a"))
                 .forEach(System.out::println);
+    }
+
+
+    /**
+     * 对对象的集合进行过滤操作
+     */
+    @Test
+    public void testFilterStu() {
+        List<StudentTestScore> studentTestScores = StudentTestScore.getSutdent();
+
+        List<StudentTestScore> filterStudentTestScores = new ArrayList<>();
+
+         studentTestScores
+                .stream()   //把集合转换成流
+                .filter((student) -> student.getStudentId() > 1L) //对流中的每一个元素进行过滤操作
+                .forEach(filterStudentTestScores::add); //遍历过滤之后的每一个元素，进行相应的义务操作
+
+         System.out.println("*******" + filterStudentTestScores);
+    }
+
+    /**
+     * 对对象的集合进行过滤操作
+     */
+    @Test
+    public void testFilterStu2() {
+        List<StudentTestScore> studentTestScores = StudentTestScore.getSutdent();
+        List<StudentTestScore> filterStudentTestScores =
+                    studentTestScores
+                            .stream()   //把集合转换成流
+                            .filter((student) -> student.getStudentId() > 1L).collect(Collectors.toList());//把满足条件的对象放进新的集合
+
+        System.out.println("*******" + filterStudentTestScores);
+
+    }
+
+
+    /**
+     * Sorted是一个中间操作，
+     * 能够返回一个排过序的流对象的视图。
+     * 这些元素按自然顺序排序，
+     * 除非你经过一个自定义比较器（实现Comparator接口）
+     */
+    @Test
+    public void testSortedString() {
+
+        stringCollection
+                .stream()
+                .sorted()
+                .filter((s) -> s.startsWith("b"))
+                .forEach(System.out::println);
+
+        /**
+         * 要记住，排序只会创建一个流的排序视图，
+         * 而不处理支持集合的排序。
+         * 原来string集合中的元素顺序是没有改变的
+         */
+        System.out.println("*******" + stringCollection);
+    }
+
+    @Test
+    public void testSortedObject() {
+        List<StudentTestScore> filterStudentTestScores = StudentTestScore.getSutdent();
+
+        filterStudentTestScores
+                .stream()
+                .sorted((o1, o2) -> (o2.getScore().subtract(o1.getScore())).intValue())
+                .filter((student) -> student.getStudentId() > 1L) //对流中的每一个元素进行过滤操作
+                .forEach(System.out::println);
+    }
+
+    /**
+     * map是一个对于流对象的中间操作，通过给定的方法，
+     * 它能够把流对象中的每一个元素对应到另外一个对象上。
+     * 下面的例子将每个字符串转换成一个大写字符串，
+     * 但也可以使用map将每个对象转换为另一种类型。
+     * 所得到的流的泛型类型取决于您传递给map方法的泛型类型
+     */
+    @Test
+    public void testMapStr() {
+        stringCollection
+                .stream()
+                .map(String::toUpperCase)
+                .sorted(Comparator.reverseOrder())
+                .forEach(System.out::println);
+    }
+
+    /**
+     * map在对象集合上的使用
+     */
+    @Test
+    public void testMapObject() {
+        List<StudentTestScore> studentTestScoreList = StudentTestScore.getSutdent();
+        studentTestScoreList =
+                studentTestScoreList
+                        .stream()
+                        .map(studentTestScore -> {
+                            studentTestScore.setName("修改名字");
+                            studentTestScore.setClazzId(888L);
+                            return studentTestScore;
+                        }).collect(Collectors.toList());
+
+        System.out.println("*******" + studentTestScoreList);
+
     }
 
 }
