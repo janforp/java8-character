@@ -37,7 +37,17 @@ import java.util.function.Consumer;
  *
  *    语法格式六: Lambda 表达式的参数列表的数据类型可以省略不写, 因为JVM编译器可以
  *    通过上下文推断出数据类型,成为 "类型推断"
- };
+ *
+ *
+ *     "->" 左右遇一括号省
+ *     "->" 左侧推断类型省
+ *     能省则省,return也能省
+ *
+ *
+ *     二.Lambda 表达式需要函数式接口的支持
+ *     函数式接口:若一个接口中只有一个抽象方法,则成为函数式接口,可以使用注解@FunctionalInterface
+ *     修饰,用于检测是否是函数式接口
+ *
  *
  *
  */
@@ -86,4 +96,28 @@ public class LambdaGrammar {
     public void grammar5() {
         Comparator<Integer> com = (x, y) -> x - y;
     }
+
+
+    /***************************************************************************************************/
+
+    /**
+     * 需求:对一个数进行计算
+     * 1.先定义一个函数式接口
+     * 2.
+     */
+    @Test
+    public void testMyFun() {
+        Integer result = operation(100,x -> x*x);
+        System.out.println(result);
+
+        result = operation(200, x -> x+1);
+        System.out.println(result);
+
+    }
+
+    public Integer operation(Integer num, MyFun myFun){
+        return myFun.getValue(num);
+    }
+
+
 }
