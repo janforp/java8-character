@@ -1,5 +1,6 @@
 package com.janita.mook;
 
+import com.janita.bean.Person;
 import org.junit.Test;
 
 import java.util.function.Supplier;

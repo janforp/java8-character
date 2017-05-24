@@ -1,26 +1,11 @@
 package com.janita.mook;
 
+import com.janita.bean.Something;
+import com.janita.functional.Converter;
 import org.junit.Test;
 
-/**
- * Created by Janita on 2017-05-24 11:32
- * 注解 @FunctionalInterface
- * 当你尝试在接口上添加第二个抽象方法声明时，编译器会注意到这个注释并抛出一个编译器错误
- */
-@FunctionalInterface
-public interface Converter<F, T> {
 
-    T convert (F from);
-}
-
-class Something {
-    String startsWith(String s) {
-        return String.valueOf(s.charAt(0));
-    }
-}
-
-
-class ConverterTest{
+public class FunctionalInterfaceConverterTest {
 
     public static void main(String[] args) {
         simpleUse();
@@ -29,7 +14,6 @@ class ConverterTest{
         testFinal();
         testFinal3();
     }
-
 
     /**
      * 直接使用

@@ -1,5 +1,7 @@
 package com.janita.mook;
 
+import com.janita.bean.Person;
+
 /**
  * Created by Janita on 2017-05-24 11:50
  *
