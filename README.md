@@ -7,3 +7,7 @@ java8新特性
 http://www.imooc.com/m/wap/article/detail.html?aid=1539&from=groupmessage&isappinstalled=1
 
 http://www.imooc.com/article/1896
+
+
+尚硅谷 java8 视频
+https://ke.qq.com/user/index/index.html#cid=182668&tid=100215997&fr=2&term_id=100215997
