@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.lambda;
 
 import com.janita.bean.Person;
 import org.junit.Test;

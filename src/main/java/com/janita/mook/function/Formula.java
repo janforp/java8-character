@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.function;
 
 /**
  * Created by Janita on 2017-05-24 09:42

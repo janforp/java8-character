@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.map;
 
 import org.junit.Before;
 import org.junit.Test;

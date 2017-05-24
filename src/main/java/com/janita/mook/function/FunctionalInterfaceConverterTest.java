@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.function;
 
 import com.janita.bean.Something;
 import com.janita.functional.Converter;

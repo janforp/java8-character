@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.stream;
 
 import org.junit.Before;
 import org.junit.Test;

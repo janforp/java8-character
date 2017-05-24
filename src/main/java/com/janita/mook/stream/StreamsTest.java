@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.stream;
 
 import com.janita.bean.StudentTestScore;
 import org.junit.Before;

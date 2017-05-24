@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.lambda;
 
 /**
  * Created by Janita on 2017-05-24 15:20

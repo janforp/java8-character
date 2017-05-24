@@ -1,4 +1,4 @@
-package com.janita.mook;
+package com.janita.mook.function;
 
 import org.junit.Test;
 
