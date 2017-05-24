@@ -4,9 +4,11 @@ import com.janita.bean.StudentTestScore;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -161,7 +163,95 @@ public class StreamsTest {
                         }).collect(Collectors.toList());
 
         System.out.println("*******" + studentTestScoreList);
+    }
+
+    /**
+     * 可以使用各种匹配操作来检查某个谓词是否匹配流。
+     * 所有这些操作都是终止操作，返回一个布尔结果
+     */
+    @Test
+    public void testMatchStr() {
+        boolean anyStartsWithA =
+                stringCollection
+                        .stream()
+                        .anyMatch((s) -> s.startsWith("a"));
+
+        System.out.println(anyStartsWithA);      // true
+
+        boolean allStartsWithA =
+                stringCollection
+                        .stream()
+                        .allMatch((s) -> s.startsWith("a"));
+
+        System.out.println(allStartsWithA);      // false
+
+        boolean noneStartsWithZ =
+                stringCollection
+                        .stream()
+                        .noneMatch((s) -> s.startsWith("z"));
+
+        System.out.println(noneStartsWithZ);      // true
 
     }
 
+    /**
+     * Count是一个终止操作返回流中的元素的数目，
+     * 返回long类型
+     *
+     * 用于对象集合也是类似的
+     */
+    @Test
+    public void testCount() {
+        long startsWithB =
+                stringCollection
+                        .stream()
+                        .filter((s) -> s.startsWith("b"))
+                        .count();
+
+        System.out.println(startsWithB);    // 3
+    }
+
+    /**
+     * 该终止操作能够通过某一个方法，
+     * 对元素进行削减操作。
+     * 该操作的结果会放在一个Optional变量里返回。
+     */
+    @Test
+    public void testReduceStr() {
+        Optional<String> reduced =
+                stringCollection
+                        .stream()
+                        .sorted()
+                        .reduce((s1, s2) -> s1 + "#" + s2);
+
+        reduced.ifPresent(System.out::println);
+    }
+
+
+    /**
+     * reduce对对象集合的操作
+     */
+    @Test
+    public void testReduceObject() {
+        List<StudentTestScore> scoreList = StudentTestScore.getSutdent();
+        Optional<StudentTestScore> reduced =
+                scoreList
+                    .stream()
+//                    .sorted()
+                    .reduce((scoreA, scoreB) -> {
+
+                        BigDecimal score1 = scoreA.getScore();
+                        BigDecimal score2 = scoreB.getScore();
+
+                        StudentTestScore score = new StudentTestScore();
+                        score.setClazzId(222L);
+                        score.setStudentId(1312313L);
+                        score.setName("呵呵呵");
+                        score.setTestId(2222L);
+                        score.setScore(score1.add(score2));
+                        return score;
+                    });
+
+        reduced.ifPresent(System.out::println);
+    }
 }
