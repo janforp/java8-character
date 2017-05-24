@@ -1,5 +1,7 @@
 package com.janita.mook.lambda;
 
+import com.janita.functional.Converter;
+
 /**
  * Created by Janita on 2017-05-24 15:20
  */
