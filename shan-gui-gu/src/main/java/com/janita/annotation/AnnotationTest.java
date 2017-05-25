@@ -11,9 +11,12 @@ import java.lang.reflect.Method;
  */
 public class AnnotationTest {
 
+    //checker framework
+    private /*@NonNull*/ Object obj = null;
+
     @MyAnnotation("hello")
     @MyAnnotation("world")
-    public void show() {}
+    public void show(@MyAnnotation("abc") String str) {}
 
     @Test
     public void test1() throws NoSuchMethodException {
