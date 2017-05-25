@@ -36,7 +36,6 @@ public class TestTemporalAdjuster {
                 return ldt4.plusDays(1);
             }
         });
-
         System.out.println("******* "+ ldt);
     }
 }
