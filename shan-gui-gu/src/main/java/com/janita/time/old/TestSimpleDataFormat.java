@@ -1,6 +1,5 @@
 package com.janita.time.old;
 
-import com.janita.time.old.DataFormatThreadLocal;
 
 import java.util.ArrayList;
 import java.util.Date;
