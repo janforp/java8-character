@@ -1,9 +1,6 @@
 package com.janita.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +19,10 @@ public class Employee {
     private Integer age;
 
     private Double salary;
+
+    public Employee(Integer age) {
+        this.age = age;
+    }
 
     public static List<Employee> employeeList() {
         List<Employee> employees = Arrays.asList(
