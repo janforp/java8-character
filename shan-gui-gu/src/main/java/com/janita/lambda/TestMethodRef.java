@@ -60,7 +60,7 @@ public class TestMethodRef {
 
     @Test
     public void test2() {
-        Employee employee = new Employee("JJ",20,50.2);
+        Employee employee = new Employee("JJ",20,50.2, Employee.Status.BUSY);
         //方法引用
         Supplier<String> sup = employee::getName;
         System.out.println("*******" + sup.get());
