@@ -138,7 +138,7 @@ public class TestTracdor {
      */
     @Test
     public void test8() {
-        Optional<Transaction> transaction = transactions.stream()
+        Optional<Transaction> transaction = transactions.parallelStream()
                 .min(Comparator.comparingInt(Transaction::getValue));
         System.out.println("******* " + transaction);
     }
