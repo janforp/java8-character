@@ -120,4 +120,18 @@ public class TestMethodRef {
         //编译不通过，因为没有两个参数的构造器
 //        BiFunction<Integer, Integer, Employee> bf = Employee :: new ;
     }
+
+
+    /**************************数组引用********************************************/
+
+    @Test
+    public void test7() {
+        Function<Integer, String[]> fun = (x) -> new String[x];
+        String[] strings = fun.apply(10);
+        System.out.println("*******" + strings.length);
+
+        Function<Integer, String[]> function = String[] :: new;
+        String[] strings1 = function.apply(50);
+        System.out.println("*******" + strings1.length);
+    }
 }
