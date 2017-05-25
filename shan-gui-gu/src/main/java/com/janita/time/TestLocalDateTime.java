@@ -58,6 +58,25 @@ public class TestLocalDateTime {
 
         Duration duration = Duration.between(ins1,ins2);
         System.out.println("******* " + duration.toMillis());
+
+        LocalTime lt1 = LocalTime.now();
+        Thread.sleep(1000);
+        LocalTime lt2 = LocalTime.now();
+        System.out.println("******* " + Duration.between(lt1,lt2).toMillis());
     }
-    //4.Period : 计算两个 日期之间的间隔
+
+    //4.Period : 计算两个 日期之间的间
+
+    @Test
+    public void test4() {
+        LocalDate ld1 = LocalDate.of(2015, 1, 1);
+        LocalDate ld2 = LocalDate.now();
+
+        Period period = Period.between(ld1, ld2);
+        System.out.println("******* "+ period);
+
+        System.out.println("******* "+ period.getYears());
+        System.out.println("******* "+ period.getMonths());
+        System.out.println("******* "+ period.getDays());
+    }
 }
