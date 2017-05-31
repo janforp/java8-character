@@ -12,7 +12,8 @@
 		<module>base-character</module>
 		<module>use-character</module>
 		<module>shan-gui-gu</module>
-	</modules>
+        <module>java8-book</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
