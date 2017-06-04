@@ -48,7 +48,6 @@ public class Debugging {
     public static void debug4() {
         List<Integer> numbers = Arrays.asList(2,3,4,5);
 
-        numbers =
         numbers.stream()
                 .peek(x -> System.out.println("from stream : " + x))
                 .map(x -> x + 17)
