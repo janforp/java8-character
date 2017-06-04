@@ -13,6 +13,7 @@
 		<module>use-character</module>
 		<module>shan-gui-gu</module>
         <module>java8-book</module>
+        <module>java8-in-action</module>
     </modules>
 
 	<parent>
