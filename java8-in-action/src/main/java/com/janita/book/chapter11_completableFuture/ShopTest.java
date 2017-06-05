@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by Janita on 2017/6/5 0005- 下午 2:05
@@ -83,5 +85,18 @@ public class ShopTest {
 
         long end = System.nanoTime();
         System.out.println("\n****** 消耗时间 : " + (end - start) / 1_000_000 );
+    }
+
+    public Stream<CompletableFuture<String>> findProcessStream(String product) {
+        return Shop.shopList()
+                .stream()
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(product),executor))
+                .map(future -> future.thenApply(Quote::parse))
+                .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)));
+    }
+
+    @Test
+    public void test3() {
+        findProcessStream("myPhone").map(f -> f.thenAccept(System.out::println));
     }
 }

@@ -32,6 +32,15 @@ public class Shop {
         }
     }
 
+    public static void randomDelay() {
+        int delay = 500 + new Random().nextInt(2000);
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Shop(String shopName) {
         this.shopName = shopName;
     }
