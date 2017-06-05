@@ -3,8 +3,6 @@ package com.janita.book.chapter11_completableFuture;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 /**
  * Created by Janita on 2017/6/5 0005- 上午 9:33
@@ -26,57 +24,20 @@ public class Shop {
     public Shop() {
     }
 
+    public static void delay() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Shop(String shopName) {
         this.shopName = shopName;
     }
 
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    /**
-     * 异步
-     * @param product
-     * @return
-     */
-    public Future<Double> getPriceAsync(String product){
-        CompletableFuture<Double> futurePrice = new CompletableFuture<>();
-        new Thread(() -> {
-           try {
-               double price = calculatePrice(product);
-               futurePrice.complete(price);
-           }catch (Exception ex) {
-               //把异步线程中的异常封装起来，让调用者可以知道原因
-               futurePrice.completeExceptionally(ex);
-           }
-        }).start();
-        return futurePrice;
-    }
-
-    /**
-     * 使用工厂方法
-     * @param product
-     * @return
-     */
-    public Future<Double> getPriceAsync2(String product) {
-        return CompletableFuture.supplyAsync(() -> calculatePrice(product));
-    }
-
-    /**
-     * 同步
-     * @param product
-     * @return
-     */
-    public double getPrice(String product) {
-        return calculatePrice(product);
-    }
-
     private double calculatePrice(String product) {
-        Utils.delay();
+        delay();
         return new Random().nextDouble() * product.charAt(0) + product.charAt(1);
     }
 
@@ -84,8 +45,15 @@ public class Shop {
         return Arrays.asList(new Shop("BestShop"),
                 new Shop("LetsSaveBig"),
                 new Shop("MyFavoriteShop"),
-                new Shop("BuyItAll"));
+                new Shop("BuyItAll"),
+                new Shop("Janita`Shop"));
     }
 
+    public String getPrice(String product) {
+        //等待1秒
+        double price = calculatePrice(product);
+        Discount.Code code = Discount.Code.values()[new Random().nextInt(Discount.Code.values().length)];
 
+        return String.format("%s:%.2f:%s", shopName, price, code);
+    }
 }
